@@ -1,0 +1,173 @@
+<html>
+
+    <head>
+    <title>Website do Domin</title>
+    </head>
+
+    <style>
+        h1{
+            text-align: center;
+            font-size: 50;
+            font-family: "Minecraft";
+            color: white;
+        }
+        body{
+			background-image: url('background.jpg');
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+        nav{
+            color: white;
+            font-size: 30;
+        }
+        nav a{
+            color: white;
+            font-size: 30;
+            font-family: "Minecraft";
+            text-decoration: none;
+        }
+        nav a:hover{
+            text-decoration: underline;
+            color: cyan;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 10px;
+        }
+        p{
+            color: white;
+            font-family: verdana;
+            font-size: 30;
+        }
+
+        .minecraft-button {
+            background-color: #4b4b4b;
+            color: white;
+            font-size: 30px;
+            font-family: "Minecraft";
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out
+        }
+
+        .minecraft-button:hover {
+            background-color: #3e3e3e;
+            text-align: center;
+        }
+        .title{
+            size: 200px;
+
+        }
+        hr {
+            border: none;
+            border-top: 5px solid lightgray;
+            margin: 30px auto;
+            width: 85%;
+        }
+        #counter {
+            font-size: 36px;
+            text-align: center;
+        }
+        #clickSquare {
+            width: 200px;
+            height: 200px;
+            background-color: lightgray;
+            margin: 0 auto;
+            margin-top: 50px;
+            transition: all 0.2s ease-in-out;
+        }
+        #clickSquare:hover {
+            width: 220px;
+            height: 220px;
+            background-color: white;
+        }
+        #timer {
+            font-size: 24px;
+            text-align: center;
+            font-family: "Minecraftia";
+        }
+
+
+    </style>
+
+
+    <body>
+
+        <br>
+        <center><img src="paginicial.png" class="title"></center>
+        <hr>
+        <br>
+        <nav>
+            <ul>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="sobremim.html">Sobre Mim</a></li>
+                <li><a href="comofizosite.html">Como fiz esse site?</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+        <p>Olá, esse é o site do Felipe Caliento Domingueti, aqui estão algumas coisas que gostei de colocar no site, não tenha medo de explorar o menu ou o código desse projeto, o qual disponibolibisarei assim que possível, segue um contador de clicks por segundo para que possa se divertir!</p>
+        <div id="clickSquare"></div>
+        <p>Clique no quadrado o mais rápido que conseguir!</p>
+        <p>Clicks por segundo: <span id="counter">0</span></p>
+        <div id="timer">Tempo: <span id="timeElapsed">0.00</span> segundos</div>
+        <button onclick="stopTimer()" class="minecraft-button">PARAR</button>
+        <script>
+            var clicks = 0;
+            var startTime = 0;
+            var elapsedTime = 0;
+            var cps = 0;
+            var timerInterval;
+            var isRunning = false;
+
+            var clickSquare = document.getElementById("clickSquare");
+            clickSquare.addEventListener("click", function() {
+            if (!isRunning) {
+                startTimer();
+            }
+            clicks++;
+              updateCounter();
+            });
+
+            function startTimer() {
+              startTime = new Date().getTime();
+              timerInterval = setInterval(updateTimer, 10);
+              isRunning = true;
+            }
+
+            function updateTimer() {
+              elapsedTime = (new Date().getTime() - startTime) / 1000;
+              document.getElementById("timeElapsed").textContent = elapsedTime.toFixed(2);
+            }
+
+            function updateCounter() {
+              cps = clicks / elapsedTime;
+              document.getElementById("counter").textContent = cps.toFixed(2);
+            }
+
+            function stopTimer() {
+              clearInterval(timerInterval);
+              clicks = 0;
+              startTime = 0;
+              elapsedTime = 0;
+              cps = 0;
+              isRunning = false;
+            }
+
+        </script>
+        
+
+
+    </body>
+</html>
